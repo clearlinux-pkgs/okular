@@ -22,6 +22,7 @@ kwindowsystem-dev
 kxmlgui-dev
 phonon-dev
 poppler-dev
+qca-qt5-dev
 solid-dev
 sonnet-dev
 threadweaver-dev
