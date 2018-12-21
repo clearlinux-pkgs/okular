@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 18.08.0
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz.sig
+Version  : 18.12.0
+Release  : 4
+URL      : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -24,36 +24,16 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
-BuildRequires : karchive-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kconfigwidgets-dev
-BuildRequires : kcrash-dev
 BuildRequires : khtml-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kjs-dev
-BuildRequires : kparts-dev
-BuildRequires : kpty-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwallet-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libspectre)
-BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
@@ -137,14 +117,14 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-18.08.0
+%setup -q -n okular-18.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545361998
+export SOURCE_DATE_EPOCH=1545363048
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -152,7 +132,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1545361998
+export SOURCE_DATE_EPOCH=1545363048
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -178,8 +158,8 @@ popd
 %find_lang okular_poppler
 %find_lang okular_txt
 %find_lang okular_xps
-%find_lang okular_markdown
 %find_lang org.kde.active.documentviewer
+%find_lang okular_markdown
 
 %files
 %defattr(-,root,root,-)
@@ -289,6 +269,8 @@ popd
 /usr/share/okular/pics/tool-note-okular-colorizable.png
 /usr/share/okular/pics/tool-note-okular-colorizable@2x.png
 /usr/share/okular/pics/tool-note.png
+/usr/share/okular/pics/tool-typewriter-okular-colorizable.png
+/usr/share/okular/pics/tool-typewriter-okular-colorizable@2x.png
 /usr/share/okular/pics/uparrow.png
 /usr/share/okular/pics/upleftarrow.png
 /usr/share/okular/tools.xml
@@ -372,6 +354,7 @@ popd
 /usr/share/doc/HTML/en/okular/tool-note-okular.png
 /usr/share/doc/HTML/en/okular/tool-polygon-okular.png
 /usr/share/doc/HTML/en/okular/tool-stamp-okular.png
+/usr/share/doc/HTML/en/okular/tool-typewriter-okular.png
 /usr/share/doc/HTML/en/okular/tool-underline-okular.png
 /usr/share/doc/HTML/es/okular/configure.png
 /usr/share/doc/HTML/es/okular/embedded-files-bar.png
@@ -497,6 +480,6 @@ popd
 /usr/share/man/sv/man1/okular.1
 /usr/share/man/uk/man1/okular.1
 
-%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_ooo.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f okular_markdown.lang -f org.kde.active.documentviewer.lang
+%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_ooo.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_markdown.lang
 %defattr(-,root,root,-)
 
