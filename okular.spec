@@ -6,21 +6,22 @@
 #
 Name     : okular
 Version  : 18.08.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/okular-18.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
-Requires: okular-bin
-Requires: okular-lib
-Requires: okular-data
-Requires: okular-license
-Requires: okular-locales
-Requires: okular-man
+Requires: okular-bin = %{version}-%{release}
+Requires: okular-data = %{version}-%{release}
+Requires: okular-lib = %{version}-%{release}
+Requires: okular-license = %{version}-%{release}
+Requires: okular-locales = %{version}-%{release}
+Requires: okular-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
 BuildRequires : karchive-dev
@@ -48,8 +49,9 @@ BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libspectre)
 BuildRequires : poppler-dev
+BuildRequires : poppler-extras
 BuildRequires : qca-qt5-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
@@ -63,9 +65,9 @@ The epub library can be obtained using:
 %package bin
 Summary: bin components for the okular package.
 Group: Binaries
-Requires: okular-data
-Requires: okular-license
-Requires: okular-man
+Requires: okular-data = %{version}-%{release}
+Requires: okular-license = %{version}-%{release}
+Requires: okular-man = %{version}-%{release}
 
 %description bin
 bin components for the okular package.
@@ -82,10 +84,10 @@ data components for the okular package.
 %package dev
 Summary: dev components for the okular package.
 Group: Development
-Requires: okular-lib
-Requires: okular-bin
-Requires: okular-data
-Provides: okular-devel
+Requires: okular-lib = %{version}-%{release}
+Requires: okular-bin = %{version}-%{release}
+Requires: okular-data = %{version}-%{release}
+Provides: okular-devel = %{version}-%{release}
 
 %description dev
 dev components for the okular package.
@@ -94,7 +96,7 @@ dev components for the okular package.
 %package doc
 Summary: doc components for the okular package.
 Group: Documentation
-Requires: okular-man
+Requires: okular-man = %{version}-%{release}
 
 %description doc
 doc components for the okular package.
@@ -103,8 +105,8 @@ doc components for the okular package.
 %package lib
 Summary: lib components for the okular package.
 Group: Libraries
-Requires: okular-data
-Requires: okular-license
+Requires: okular-data = %{version}-%{release}
+Requires: okular-license = %{version}-%{release}
 
 %description lib
 lib components for the okular package.
@@ -142,21 +144,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535435539
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1545361998
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535435539
+export SOURCE_DATE_EPOCH=1545361998
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/okular
-cp COPYING %{buildroot}/usr/share/doc/okular/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/okular/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/okular/COPYING.LIB
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/okular/cmake_modules_COPYING-CMAKE-SCRIPTS
+mkdir -p %{buildroot}/usr/share/package-licenses/okular
+cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/COPYING.LIB
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
 popd
@@ -195,6 +197,7 @@ popd
 /usr/share/applications/okularApplication_fb.desktop
 /usr/share/applications/okularApplication_ghostview.desktop
 /usr/share/applications/okularApplication_ooo.desktop
+/usr/share/applications/okularApplication_pdf.desktop
 /usr/share/applications/okularApplication_plucker.desktop
 /usr/share/applications/okularApplication_tiff.desktop
 /usr/share/applications/okularApplication_txt.desktop
@@ -205,6 +208,7 @@ popd
 /usr/share/applications/org.kde.mobile.okular_fb.desktop
 /usr/share/applications/org.kde.mobile.okular_ghostview.desktop
 /usr/share/applications/org.kde.mobile.okular_ooo.desktop
+/usr/share/applications/org.kde.mobile.okular_pdf.desktop
 /usr/share/applications/org.kde.mobile.okular_plucker.desktop
 /usr/share/applications/org.kde.mobile.okular_tiff.desktop
 /usr/share/applications/org.kde.mobile.okular_txt.desktop
@@ -214,6 +218,7 @@ popd
 /usr/share/config.kcfg/gssettings.kcfg
 /usr/share/config.kcfg/okular.kcfg
 /usr/share/config.kcfg/okular_core.kcfg
+/usr/share/config.kcfg/pdfsettings.kcfg
 /usr/share/icons/hicolor/128x128/apps/okular.png
 /usr/share/icons/hicolor/16x16/apps/okular.png
 /usr/share/icons/hicolor/22x22/apps/okular.png
@@ -228,6 +233,7 @@ popd
 /usr/share/kservices5/okularGhostview.desktop
 /usr/share/kservices5/okularOoo.desktop
 /usr/share/kservices5/okularPlucker.desktop
+/usr/share/kservices5/okularPoppler.desktop
 /usr/share/kservices5/okularTiff.desktop
 /usr/share/kservices5/okularTxt.desktop
 /usr/share/kservices5/okularXps.desktop
@@ -242,6 +248,7 @@ popd
 /usr/share/metainfo/org.kde.okular-fb.metainfo.xml
 /usr/share/metainfo/org.kde.okular-ooo.metainfo.xml
 /usr/share/metainfo/org.kde.okular-plucker.metainfo.xml
+/usr/share/metainfo/org.kde.okular-poppler.metainfo.xml
 /usr/share/metainfo/org.kde.okular-spectre.metainfo.xml
 /usr/share/metainfo/org.kde.okular-tiff.metainfo.xml
 /usr/share/metainfo/org.kde.okular-txt.metainfo.xml
@@ -457,6 +464,7 @@ popd
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_ghostview.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_ooo.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_plucker.so
+/usr/lib64/qt5/plugins/okular/generators/okularGenerator_poppler.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_tiff.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_txt.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_xps.so
@@ -467,14 +475,14 @@ popd
 /usr/lib64/qt5/qml/org/kde/okular/qmldir
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/okular/COPYING
-/usr/share/doc/okular/COPYING.DOC
-/usr/share/doc/okular/COPYING.LIB
-/usr/share/doc/okular/cmake_modules_COPYING-CMAKE-SCRIPTS
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/okular/COPYING
+/usr/share/package-licenses/okular/COPYING.DOC
+/usr/share/package-licenses/okular/COPYING.LIB
+/usr/share/package-licenses/okular/cmake_modules_COPYING-CMAKE-SCRIPTS
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/ca/man1/okular.1
 /usr/share/man/de/man1/okular.1
 /usr/share/man/es/man1/okular.1
