@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 18.12.0
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.0/src/okular-18.12.0.tar.xz.sig
+Version  : 18.12.1
+Release  : 5
+URL      : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -117,14 +117,14 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-18.12.0
+%setup -q -n okular-18.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545363048
+export SOURCE_DATE_EPOCH=1547247134
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -132,7 +132,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1545363048
+export SOURCE_DATE_EPOCH=1547247134
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -315,7 +315,6 @@ popd
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/HTML/ca/okular/configure-editor.png
-/usr/share/doc/HTML/ca/okular/configure.png
 /usr/share/doc/HTML/ca/okular/index.cache.bz2
 /usr/share/doc/HTML/ca/okular/index.docbook
 /usr/share/doc/HTML/ca/okular/mainwindow.png
