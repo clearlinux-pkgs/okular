@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 18.12.1
-Release  : 5
-URL      : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.1/src/okular-18.12.1.tar.xz.sig
+Version  : 18.12.2
+Release  : 6
+URL      : https://download.kde.org/stable/applications/18.12.2/src/okular-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/okular-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/okular-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -31,6 +31,7 @@ BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libspectre)
+BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
@@ -117,14 +118,14 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-18.12.1
+%setup -q -n okular-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547247134
+export SOURCE_DATE_EPOCH=1549671555
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -132,7 +133,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1547247134
+export SOURCE_DATE_EPOCH=1549671555
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -314,11 +315,30 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
+/usr/share/doc/HTML/ca/okular/bookmark-management.png
+/usr/share/doc/HTML/ca/okular/bookmarks.png
+/usr/share/doc/HTML/ca/okular/configure-annotations.png
+/usr/share/doc/HTML/ca/okular/configure-backends.png
 /usr/share/doc/HTML/ca/okular/configure-editor.png
+/usr/share/doc/HTML/ca/okular/configure.png
+/usr/share/doc/HTML/ca/okular/enhance-lowcontrast.png
+/usr/share/doc/HTML/ca/okular/enhance-shape.png
+/usr/share/doc/HTML/ca/okular/enhance-solid.png
+/usr/share/doc/HTML/ca/okular/enhance-thinline.png
 /usr/share/doc/HTML/ca/okular/index.cache.bz2
 /usr/share/doc/HTML/ca/okular/index.docbook
 /usr/share/doc/HTML/ca/okular/mainwindow.png
 /usr/share/doc/HTML/ca/okular/presentation.png
+/usr/share/doc/HTML/ca/okular/tool-ellipse-okular.png
+/usr/share/doc/HTML/ca/okular/tool-highlighter-okular.png
+/usr/share/doc/HTML/ca/okular/tool-ink-okular.png
+/usr/share/doc/HTML/ca/okular/tool-line-okular.png
+/usr/share/doc/HTML/ca/okular/tool-note-inline-okular.png
+/usr/share/doc/HTML/ca/okular/tool-note-okular.png
+/usr/share/doc/HTML/ca/okular/tool-polygon-okular.png
+/usr/share/doc/HTML/ca/okular/tool-stamp-okular.png
+/usr/share/doc/HTML/ca/okular/tool-typewriter-okular.png
+/usr/share/doc/HTML/ca/okular/tool-underline-okular.png
 /usr/share/doc/HTML/de/okular/annotation-properties.png
 /usr/share/doc/HTML/de/okular/configure-annotations.png
 /usr/share/doc/HTML/de/okular/configure-editor.png
