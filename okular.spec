@@ -6,11 +6,11 @@
 #
 Name     : okular
 Version  : 18.12.3
-Release  : 7
+Release  : 8
 URL      : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Document Viewer
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
 Requires: okular-bin = %{version}-%{release}
@@ -24,9 +24,26 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
+BuildRequires : karchive-dev
+BuildRequires : kbookmarks-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
 BuildRequires : khtml-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
 BuildRequires : kjs-dev
+BuildRequires : kparts-dev
+BuildRequires : kpty-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwallet-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
@@ -35,6 +52,8 @@ BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
@@ -68,6 +87,7 @@ Requires: okular-lib = %{version}-%{release}
 Requires: okular-bin = %{version}-%{release}
 Requires: okular-data = %{version}-%{release}
 Provides: okular-devel = %{version}-%{release}
+Requires: okular = %{version}-%{release}
 
 %description dev
 dev components for the okular package.
@@ -124,16 +144,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552013058
+export SOURCE_DATE_EPOCH=1555349596
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552013058
+export SOURCE_DATE_EPOCH=1555349596
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
