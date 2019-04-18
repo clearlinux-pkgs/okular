@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 18.12.3
-Release  : 8
-URL      : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/okular-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz.sig
 Summary  : Document Viewer
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -24,36 +24,18 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
-BuildRequires : karchive-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kconfigwidgets-dev
-BuildRequires : kcrash-dev
 BuildRequires : khtml-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kjs-dev
-BuildRequires : kparts-dev
-BuildRequires : kpty-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwallet-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libspectre)
 BuildRequires : poppler-dev
 BuildRequires : poppler-extras
+BuildRequires : purpose-dev
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
@@ -137,14 +119,14 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-18.12.3
+%setup -q -n okular-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555349596
+export SOURCE_DATE_EPOCH=1555626125
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -152,7 +134,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555349596
+export SOURCE_DATE_EPOCH=1555626125
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -313,6 +295,7 @@ popd
 /usr/include/okular/core/pagesize.h
 /usr/include/okular/core/pagetransition.h
 /usr/include/okular/core/settings_core.h
+/usr/include/okular/core/signatureutils.h
 /usr/include/okular/core/sound.h
 /usr/include/okular/core/sourcereference.h
 /usr/include/okular/core/textdocumentgenerator.h
@@ -384,6 +367,8 @@ popd
 /usr/share/doc/HTML/en/okular/index.docbook
 /usr/share/doc/HTML/en/okular/mainwindow.png
 /usr/share/doc/HTML/en/okular/presentation.png
+/usr/share/doc/HTML/en/okular/signatures-bar.png
+/usr/share/doc/HTML/en/okular/signatures-panel.png
 /usr/share/doc/HTML/en/okular/tool-ellipse-okular.png
 /usr/share/doc/HTML/en/okular/tool-highlighter-okular.png
 /usr/share/doc/HTML/en/okular/tool-ink-okular.png
@@ -473,6 +458,8 @@ popd
 /usr/share/doc/HTML/uk/okular/index.cache.bz2
 /usr/share/doc/HTML/uk/okular/index.docbook
 /usr/share/doc/HTML/uk/okular/mainwindow.png
+/usr/share/doc/HTML/uk/okular/signatures-bar.png
+/usr/share/doc/HTML/uk/okular/signatures-panel.png
 
 %files lib
 %defattr(-,root,root,-)
