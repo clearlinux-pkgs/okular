@@ -6,7 +6,7 @@
 #
 Name     : okular
 Version  : 19.04.0
-Release  : 9
+Release  : 10
 URL      : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz.sig
@@ -24,9 +24,26 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
+BuildRequires : karchive-dev
+BuildRequires : kbookmarks-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
 BuildRequires : khtml-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
 BuildRequires : kjs-dev
+BuildRequires : kparts-dev
+BuildRequires : kpty-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwallet-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
@@ -36,6 +53,8 @@ BuildRequires : poppler-extras
 BuildRequires : purpose-dev
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
@@ -126,15 +145,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555626125
+export SOURCE_DATE_EPOCH=1557043551
 mkdir -p clr-build
 pushd clr-build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555626125
+export SOURCE_DATE_EPOCH=1557043551
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
