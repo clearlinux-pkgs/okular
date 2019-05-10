@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 19.04.0
-Release  : 10
-URL      : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/okular-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 11
+URL      : https://download.kde.org/stable/applications/19.04.1/src/okular-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/okular-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/okular-19.04.1.tar.xz.sig
 Summary  : Document Viewer
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -24,26 +24,9 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
-BuildRequires : karchive-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kconfigwidgets-dev
-BuildRequires : kcrash-dev
 BuildRequires : khtml-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kjs-dev
-BuildRequires : kparts-dev
-BuildRequires : kpty-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwallet-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
@@ -53,8 +36,6 @@ BuildRequires : poppler-extras
 BuildRequires : purpose-dev
 BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
@@ -88,6 +69,7 @@ Requires: okular-lib = %{version}-%{release}
 Requires: okular-bin = %{version}-%{release}
 Requires: okular-data = %{version}-%{release}
 Provides: okular-devel = %{version}-%{release}
+Requires: okular = %{version}-%{release}
 Requires: okular = %{version}-%{release}
 
 %description dev
@@ -138,14 +120,14 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-19.04.0
+%setup -q -n okular-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557043551
+export SOURCE_DATE_EPOCH=1557463544
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -160,7 +142,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557043551
+export SOURCE_DATE_EPOCH=1557463544
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
