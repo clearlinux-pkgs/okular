@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 19.04.2
-Release  : 12
-URL      : https://download.kde.org/stable/applications/19.04.2/src/okular-19.04.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.2/src/okular-19.04.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.2/src/okular-19.04.2.tar.xz.sig
+Version  : 19.04.3
+Release  : 13
+URL      : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz.sig
 Summary  : Document Viewer
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -120,16 +120,17 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-19.04.2
+%setup -q -n okular-19.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559905735
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562892329
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -138,11 +139,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1559905735
+export SOURCE_DATE_EPOCH=1562892329
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -442,15 +443,6 @@ popd
 /usr/share/doc/HTML/pl/okular/tool-underline-okular.png
 /usr/share/doc/HTML/pt/okular/index.cache.bz2
 /usr/share/doc/HTML/pt/okular/index.docbook
-/usr/share/doc/HTML/pt_BR/okular/annotation-properties.png
-/usr/share/doc/HTML/pt_BR/okular/annotations.png
-/usr/share/doc/HTML/pt_BR/okular/configure.png
-/usr/share/doc/HTML/pt_BR/okular/embedded-files-bar.png
-/usr/share/doc/HTML/pt_BR/okular/forms-bar.png
-/usr/share/doc/HTML/pt_BR/okular/index.cache.bz2
-/usr/share/doc/HTML/pt_BR/okular/index.docbook
-/usr/share/doc/HTML/pt_BR/okular/mainwindow.png
-/usr/share/doc/HTML/pt_BR/okular/presentation.png
 /usr/share/doc/HTML/sv/okular/configure.png
 /usr/share/doc/HTML/sv/okular/index.cache.bz2
 /usr/share/doc/HTML/sv/okular/index.docbook
