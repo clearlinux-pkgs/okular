@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 19.04.3
-Release  : 13
-URL      : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/okular-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 14
+URL      : https://download.kde.org/stable/applications/19.08.0/src/okular-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/okular-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/okular-19.08.0.tar.xz.sig
 Summary  : Document Viewer
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -120,16 +120,17 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-19.04.3
+%setup -q -n okular-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562892329
+export SOURCE_DATE_EPOCH=1565929935
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -143,7 +144,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562892329
+export SOURCE_DATE_EPOCH=1565929935
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp COPYING %{buildroot}/usr/share/package-licenses/okular/COPYING
@@ -285,7 +286,7 @@ popd
 /usr/share/okular/pics/uparrow.png
 /usr/share/okular/pics/upleftarrow.png
 /usr/share/okular/tools.xml
-/usr/share/xdg/okular.categories
+/usr/share/qlogging-categories5/okular.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -303,6 +304,7 @@ popd
 /usr/include/okular/core/page.h
 /usr/include/okular/core/pagesize.h
 /usr/include/okular/core/pagetransition.h
+/usr/include/okular/core/printoptionswidget.h
 /usr/include/okular/core/settings_core.h
 /usr/include/okular/core/signatureutils.h
 /usr/include/okular/core/sound.h
@@ -443,6 +445,21 @@ popd
 /usr/share/doc/HTML/pl/okular/tool-underline-okular.png
 /usr/share/doc/HTML/pt/okular/index.cache.bz2
 /usr/share/doc/HTML/pt/okular/index.docbook
+/usr/share/doc/HTML/pt_BR/okular/annotation-properties.png
+/usr/share/doc/HTML/pt_BR/okular/annotations.png
+/usr/share/doc/HTML/pt_BR/okular/bookmark-management.png
+/usr/share/doc/HTML/pt_BR/okular/configure-annotations.png
+/usr/share/doc/HTML/pt_BR/okular/configure-backends.png
+/usr/share/doc/HTML/pt_BR/okular/configure-editor.png
+/usr/share/doc/HTML/pt_BR/okular/configure.png
+/usr/share/doc/HTML/pt_BR/okular/embedded-files-bar.png
+/usr/share/doc/HTML/pt_BR/okular/forms-bar.png
+/usr/share/doc/HTML/pt_BR/okular/index.cache.bz2
+/usr/share/doc/HTML/pt_BR/okular/index.docbook
+/usr/share/doc/HTML/pt_BR/okular/mainwindow.png
+/usr/share/doc/HTML/pt_BR/okular/presentation.png
+/usr/share/doc/HTML/pt_BR/okular/signatures-bar.png
+/usr/share/doc/HTML/pt_BR/okular/signatures-panel.png
 /usr/share/doc/HTML/sv/okular/configure.png
 /usr/share/doc/HTML/sv/okular/index.cache.bz2
 /usr/share/doc/HTML/sv/okular/index.docbook
