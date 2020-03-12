@@ -6,11 +6,11 @@
 #
 Name     : okular
 Version  : 19.12.3
-Release  : 21
+Release  : 22
 URL      : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz.sig
-Summary  : Document Viewer
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
 Requires: okular-bin = %{version}-%{release}
@@ -39,6 +39,7 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
+Patch1: CVE-2020-9359.patch
 
 %description
 This is a libepub based backend to watch epub books using okular
@@ -69,7 +70,6 @@ Requires: okular-lib = %{version}-%{release}
 Requires: okular-bin = %{version}-%{release}
 Requires: okular-data = %{version}-%{release}
 Provides: okular-devel = %{version}-%{release}
-Requires: okular = %{version}-%{release}
 Requires: okular = %{version}-%{release}
 
 %description dev
@@ -122,30 +122,30 @@ man components for the okular package.
 %prep
 %setup -q -n okular-19.12.3
 cd %{_builddir}/okular-19.12.3
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583521514
+export SOURCE_DATE_EPOCH=1584037622
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583521514
+export SOURCE_DATE_EPOCH=1584037622
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp %{_builddir}/okular-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
