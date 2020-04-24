@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 19.12.3
-Release  : 22
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/okular-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 23
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/okular-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/okular-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/okular-20.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -22,12 +22,16 @@ Requires: okular-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(poppler)
+BuildRequires : extra-cmake-modules-data
 BuildRequires : freetype-dev
 BuildRequires : kactivities-dev
+BuildRequires : kdegraphics-mobipocket-dev
 BuildRequires : khtml-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kjs-dev
+BuildRequires : kpty-dev
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : libkexiv2-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libspectre)
@@ -35,11 +39,10 @@ BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : purpose-dev
 BuildRequires : qca-qt5-dev
-BuildRequires : qtbase-dev mesa-dev
+BuildRequires : qtbase-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
-Patch1: CVE-2020-9359.patch
 
 %description
 This is a libepub based backend to watch epub books using okular
@@ -120,16 +123,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-19.12.3
-cd %{_builddir}/okular-19.12.3
-%patch1 -p1
+%setup -q -n okular-20.04.0
+cd %{_builddir}/okular-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1584037622
+export SOURCE_DATE_EPOCH=1587706595
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -137,21 +139,21 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1584037622
+export SOURCE_DATE_EPOCH=1587706595
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
-cp %{_builddir}/okular-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/okular-19.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
-cp %{_builddir}/okular-19.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/okular-19.12.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/okular-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/okular-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
+cp %{_builddir}/okular-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/okular-20.04.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -180,7 +182,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/okular
-/usr/bin/okularkirigami
 
 %files data
 %defattr(-,root,root,-)
@@ -189,6 +190,8 @@ popd
 /usr/share/applications/okularApplication_fax.desktop
 /usr/share/applications/okularApplication_fb.desktop
 /usr/share/applications/okularApplication_ghostview.desktop
+/usr/share/applications/okularApplication_kimgio.desktop
+/usr/share/applications/okularApplication_mobi.desktop
 /usr/share/applications/okularApplication_ooo.desktop
 /usr/share/applications/okularApplication_pdf.desktop
 /usr/share/applications/okularApplication_plucker.desktop
@@ -200,6 +203,8 @@ popd
 /usr/share/applications/org.kde.mobile.okular_fax.desktop
 /usr/share/applications/org.kde.mobile.okular_fb.desktop
 /usr/share/applications/org.kde.mobile.okular_ghostview.desktop
+/usr/share/applications/org.kde.mobile.okular_kimgio.desktop
+/usr/share/applications/org.kde.mobile.okular_mobi.desktop
 /usr/share/applications/org.kde.mobile.okular_ooo.desktop
 /usr/share/applications/org.kde.mobile.okular_pdf.desktop
 /usr/share/applications/org.kde.mobile.okular_plucker.desktop
@@ -207,7 +212,6 @@ popd
 /usr/share/applications/org.kde.mobile.okular_txt.desktop
 /usr/share/applications/org.kde.mobile.okular_xps.desktop
 /usr/share/applications/org.kde.okular.desktop
-/usr/share/applications/org.kde.okular.kirigami.desktop
 /usr/share/config.kcfg/gssettings.kcfg
 /usr/share/config.kcfg/okular.kcfg
 /usr/share/config.kcfg/okular_core.kcfg
@@ -224,6 +228,8 @@ popd
 /usr/share/kservices5/okularFax.desktop
 /usr/share/kservices5/okularFb.desktop
 /usr/share/kservices5/okularGhostview.desktop
+/usr/share/kservices5/okularKimgio.desktop
+/usr/share/kservices5/okularMobi.desktop
 /usr/share/kservices5/okularOoo.desktop
 /usr/share/kservices5/okularPlucker.desktop
 /usr/share/kservices5/okularPoppler.desktop
@@ -239,6 +245,8 @@ popd
 /usr/share/metainfo/org.kde.okular-dvi.metainfo.xml
 /usr/share/metainfo/org.kde.okular-fax.metainfo.xml
 /usr/share/metainfo/org.kde.okular-fb.metainfo.xml
+/usr/share/metainfo/org.kde.okular-kimgio.metainfo.xml
+/usr/share/metainfo/org.kde.okular-mobipocket.metainfo.xml
 /usr/share/metainfo/org.kde.okular-ooo.metainfo.xml
 /usr/share/metainfo/org.kde.okular-plucker.metainfo.xml
 /usr/share/metainfo/org.kde.okular-poppler.metainfo.xml
@@ -247,7 +255,6 @@ popd
 /usr/share/metainfo/org.kde.okular-txt.metainfo.xml
 /usr/share/metainfo/org.kde.okular-xps.metainfo.xml
 /usr/share/metainfo/org.kde.okular.appdata.xml
-/usr/share/metainfo/org.kde.okular.kirigami.appdata.xml
 /usr/share/okular/drawingtools.xml
 /usr/share/okular/icons/hicolor/16x16/apps/okular-fb2.png
 /usr/share/okular/icons/hicolor/16x16/apps/okular-gv.png
@@ -488,6 +495,8 @@ popd
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_fax.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_fb.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_ghostview.so
+/usr/lib64/qt5/plugins/okular/generators/okularGenerator_kimgio.so
+/usr/lib64/qt5/plugins/okular/generators/okularGenerator_mobi.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_ooo.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_plucker.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_poppler.so
@@ -495,10 +504,6 @@ popd
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_txt.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_xps.so
 /usr/lib64/qt5/plugins/okularpart.so
-/usr/lib64/qt5/qml/org/kde/okular/DocumentView.qml
-/usr/lib64/qt5/qml/org/kde/okular/libokularplugin.so
-/usr/lib64/qt5/qml/org/kde/okular/private/PageView.qml
-/usr/lib64/qt5/qml/org/kde/okular/qmldir
 
 %files license
 %defattr(0644,root,root,0755)
