@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 20.04.2
-Release  : 25
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/okular-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/okular-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/okular-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 26
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/okular-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/okular-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/okular-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -123,15 +123,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-20.04.2
-cd %{_builddir}/okular-20.04.2
+%setup -q -n okular-20.08.0
+cd %{_builddir}/okular-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591970736
+export SOURCE_DATE_EPOCH=1597798741
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -143,17 +143,17 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591970736
+export SOURCE_DATE_EPOCH=1597798741
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
-cp %{_builddir}/okular-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/okular-20.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
-cp %{_builddir}/okular-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/okular-20.04.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/okular-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/okular-20.08.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
+cp %{_builddir}/okular-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/okular-20.08.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -175,6 +175,7 @@ popd
 %find_lang okular_xps
 %find_lang org.kde.active.documentviewer
 %find_lang okular_markdown
+%find_lang okular_tiff
 
 %files
 %defattr(-,root,root,-)
@@ -294,6 +295,7 @@ popd
 /usr/share/okular/pics/uparrow.png
 /usr/share/okular/pics/upleftarrow.png
 /usr/share/okular/tools.xml
+/usr/share/okular/toolsQuick.xml
 /usr/share/qlogging-categories5/okular.categories
 
 %files dev
@@ -337,29 +339,14 @@ popd
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/HTML/ca/okular/bookmark-management.png
-/usr/share/doc/HTML/ca/okular/bookmarks.png
 /usr/share/doc/HTML/ca/okular/configure-annotations.png
 /usr/share/doc/HTML/ca/okular/configure-backends.png
 /usr/share/doc/HTML/ca/okular/configure-editor.png
 /usr/share/doc/HTML/ca/okular/configure.png
-/usr/share/doc/HTML/ca/okular/enhance-lowcontrast.png
-/usr/share/doc/HTML/ca/okular/enhance-shape.png
-/usr/share/doc/HTML/ca/okular/enhance-solid.png
-/usr/share/doc/HTML/ca/okular/enhance-thinline.png
 /usr/share/doc/HTML/ca/okular/index.cache.bz2
 /usr/share/doc/HTML/ca/okular/index.docbook
 /usr/share/doc/HTML/ca/okular/mainwindow.png
 /usr/share/doc/HTML/ca/okular/presentation.png
-/usr/share/doc/HTML/ca/okular/tool-ellipse-okular.png
-/usr/share/doc/HTML/ca/okular/tool-highlighter-okular.png
-/usr/share/doc/HTML/ca/okular/tool-ink-okular.png
-/usr/share/doc/HTML/ca/okular/tool-line-okular.png
-/usr/share/doc/HTML/ca/okular/tool-note-inline-okular.png
-/usr/share/doc/HTML/ca/okular/tool-note-okular.png
-/usr/share/doc/HTML/ca/okular/tool-polygon-okular.png
-/usr/share/doc/HTML/ca/okular/tool-stamp-okular.png
-/usr/share/doc/HTML/ca/okular/tool-typewriter-okular.png
-/usr/share/doc/HTML/ca/okular/tool-underline-okular.png
 /usr/share/doc/HTML/de/okular/annotation-properties.png
 /usr/share/doc/HTML/de/okular/configure-annotations.png
 /usr/share/doc/HTML/de/okular/configure-editor.png
@@ -388,16 +375,29 @@ popd
 /usr/share/doc/HTML/en/okular/presentation.png
 /usr/share/doc/HTML/en/okular/signatures-bar.png
 /usr/share/doc/HTML/en/okular/signatures-panel.png
-/usr/share/doc/HTML/en/okular/tool-ellipse-okular.png
-/usr/share/doc/HTML/en/okular/tool-highlighter-okular.png
-/usr/share/doc/HTML/en/okular/tool-ink-okular.png
-/usr/share/doc/HTML/en/okular/tool-line-okular.png
-/usr/share/doc/HTML/en/okular/tool-note-inline-okular.png
-/usr/share/doc/HTML/en/okular/tool-note-okular.png
-/usr/share/doc/HTML/en/okular/tool-polygon-okular.png
-/usr/share/doc/HTML/en/okular/tool-stamp-okular.png
-/usr/share/doc/HTML/en/okular/tool-typewriter-okular.png
-/usr/share/doc/HTML/en/okular/tool-underline-okular.png
+/usr/share/doc/HTML/en/okular/tool-draw-arrow.png
+/usr/share/doc/HTML/en/okular/tool-draw-ellipse.png
+/usr/share/doc/HTML/en/okular/tool-draw-freehand.png
+/usr/share/doc/HTML/en/okular/tool-draw-highlight.png
+/usr/share/doc/HTML/en/okular/tool-draw-line.png
+/usr/share/doc/HTML/en/okular/tool-draw-polyline.png
+/usr/share/doc/HTML/en/okular/tool-draw-rectangle.png
+/usr/share/doc/HTML/en/okular/tool-edit-comment.png
+/usr/share/doc/HTML/en/okular/tool-edit-line-width.png
+/usr/share/doc/HTML/en/okular/tool-edit-opacity.png
+/usr/share/doc/HTML/en/okular/tool-favorite.png
+/usr/share/doc/HTML/en/okular/tool-fill-color.png
+/usr/share/doc/HTML/en/okular/tool-font-face.png
+/usr/share/doc/HTML/en/okular/tool-format-text-color.png
+/usr/share/doc/HTML/en/okular/tool-format-text-strikethrough.png
+/usr/share/doc/HTML/en/okular/tool-format-text-underline-squiggle.png
+/usr/share/doc/HTML/en/okular/tool-format-text-underline.png
+/usr/share/doc/HTML/en/okular/tool-note.png
+/usr/share/doc/HTML/en/okular/tool-pin.png
+/usr/share/doc/HTML/en/okular/tool-settings-configure.png
+/usr/share/doc/HTML/en/okular/tool-tag.png
+/usr/share/doc/HTML/en/okular/tool-tool-text.png
+/usr/share/doc/HTML/en/okular/tool-window-pin.png
 /usr/share/doc/HTML/es/okular/configure.png
 /usr/share/doc/HTML/es/okular/embedded-files-bar.png
 /usr/share/doc/HTML/es/okular/index.cache.bz2
@@ -416,8 +416,21 @@ popd
 /usr/share/doc/HTML/fr/okular/presentation.png
 /usr/share/doc/HTML/gl/okular/index.cache.bz2
 /usr/share/doc/HTML/gl/okular/index.docbook
+/usr/share/doc/HTML/it/okular/annotation-properties.png
+/usr/share/doc/HTML/it/okular/annotations.png
+/usr/share/doc/HTML/it/okular/bookmark-management.png
+/usr/share/doc/HTML/it/okular/configure-annotations.png
+/usr/share/doc/HTML/it/okular/configure-backends.png
+/usr/share/doc/HTML/it/okular/configure-editor.png
+/usr/share/doc/HTML/it/okular/configure.png
+/usr/share/doc/HTML/it/okular/embedded-files-bar.png
+/usr/share/doc/HTML/it/okular/forms-bar.png
 /usr/share/doc/HTML/it/okular/index.cache.bz2
 /usr/share/doc/HTML/it/okular/index.docbook
+/usr/share/doc/HTML/it/okular/mainwindow.png
+/usr/share/doc/HTML/it/okular/presentation.png
+/usr/share/doc/HTML/it/okular/signatures-bar.png
+/usr/share/doc/HTML/it/okular/signatures-panel.png
 /usr/share/doc/HTML/ja/okular/configure.png
 /usr/share/doc/HTML/ja/okular/embedded-files-bar.png
 /usr/share/doc/HTML/ja/okular/index.cache.bz2
@@ -432,10 +445,6 @@ popd
 /usr/share/doc/HTML/pl/okular/configure-editor.png
 /usr/share/doc/HTML/pl/okular/configure.png
 /usr/share/doc/HTML/pl/okular/embedded-files-bar.png
-/usr/share/doc/HTML/pl/okular/enhance-lowcontrast.png
-/usr/share/doc/HTML/pl/okular/enhance-shape.png
-/usr/share/doc/HTML/pl/okular/enhance-solid.png
-/usr/share/doc/HTML/pl/okular/enhance-thinline.png
 /usr/share/doc/HTML/pl/okular/forms-bar.png
 /usr/share/doc/HTML/pl/okular/index.cache.bz2
 /usr/share/doc/HTML/pl/okular/index.docbook
@@ -528,6 +537,6 @@ popd
 /usr/share/man/sv/man1/okular.1
 /usr/share/man/uk/man1/okular.1
 
-%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_ooo.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_markdown.lang
+%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_ooo.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_markdown.lang -f okular_tiff.lang
 %defattr(-,root,root,-)
 
