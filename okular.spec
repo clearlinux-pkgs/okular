@@ -6,7 +6,7 @@
 #
 Name     : okular
 Version  : 20.08.2
-Release  : 27
+Release  : 28
 URL      : https://download.kde.org/stable/release-service/20.08.2/src/okular-20.08.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.08.2/src/okular-20.08.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.08.2/src/okular-20.08.2.tar.xz.sig
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602618537
+export SOURCE_DATE_EPOCH=1602649724
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -147,7 +147,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1602618537
+export SOURCE_DATE_EPOCH=1602649724
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp %{_builddir}/okular-20.08.2/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
