@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : okular
-Version  : 20.08.3
-Release  : 29
-URL      : https://download.kde.org/stable/release-service/20.08.3/src/okular-20.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.08.3/src/okular-20.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.08.3/src/okular-20.08.3.tar.xz.sig
+Version  : 20.12.0
+Release  : 30
+URL      : https://download.kde.org/stable/release-service/20.12.0/src/okular-20.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.12.0/src/okular-20.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.12.0/src/okular-20.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -38,7 +38,6 @@ BuildRequires : pkgconfig(libspectre)
 BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : purpose-dev
-BuildRequires : qca-qt5-dev
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : threadweaver-dev
 BuildRequires : tiff-dev
@@ -123,15 +122,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-20.08.3
-cd %{_builddir}/okular-20.08.3
+%setup -q -n okular-20.12.0
+cd %{_builddir}/okular-20.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604619434
+export SOURCE_DATE_EPOCH=1607730995
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -147,13 +146,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604619434
+export SOURCE_DATE_EPOCH=1607730995
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
-cp %{_builddir}/okular-20.08.3/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/okular-20.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
-cp %{_builddir}/okular-20.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/okular-20.08.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/okular-20.12.0/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/okular-20.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
+cp %{_builddir}/okular-20.12.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/okular-20.12.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -168,7 +167,6 @@ popd
 %find_lang okular_ghostview
 %find_lang okular_kimgio
 %find_lang okular_mobi
-%find_lang okular_ooo
 %find_lang okular_plucker
 %find_lang okular_poppler
 %find_lang okular_txt
@@ -193,7 +191,6 @@ popd
 /usr/share/applications/okularApplication_ghostview.desktop
 /usr/share/applications/okularApplication_kimgio.desktop
 /usr/share/applications/okularApplication_mobi.desktop
-/usr/share/applications/okularApplication_ooo.desktop
 /usr/share/applications/okularApplication_pdf.desktop
 /usr/share/applications/okularApplication_plucker.desktop
 /usr/share/applications/okularApplication_tiff.desktop
@@ -206,7 +203,6 @@ popd
 /usr/share/applications/org.kde.mobile.okular_ghostview.desktop
 /usr/share/applications/org.kde.mobile.okular_kimgio.desktop
 /usr/share/applications/org.kde.mobile.okular_mobi.desktop
-/usr/share/applications/org.kde.mobile.okular_ooo.desktop
 /usr/share/applications/org.kde.mobile.okular_pdf.desktop
 /usr/share/applications/org.kde.mobile.okular_plucker.desktop
 /usr/share/applications/org.kde.mobile.okular_tiff.desktop
@@ -231,7 +227,6 @@ popd
 /usr/share/kservices5/okularGhostview.desktop
 /usr/share/kservices5/okularKimgio.desktop
 /usr/share/kservices5/okularMobi.desktop
-/usr/share/kservices5/okularOoo.desktop
 /usr/share/kservices5/okularPlucker.desktop
 /usr/share/kservices5/okularPoppler.desktop
 /usr/share/kservices5/okularTiff.desktop
@@ -248,7 +243,6 @@ popd
 /usr/share/metainfo/org.kde.okular-fb.metainfo.xml
 /usr/share/metainfo/org.kde.okular-kimgio.metainfo.xml
 /usr/share/metainfo/org.kde.okular-mobipocket.metainfo.xml
-/usr/share/metainfo/org.kde.okular-ooo.metainfo.xml
 /usr/share/metainfo/org.kde.okular-plucker.metainfo.xml
 /usr/share/metainfo/org.kde.okular-poppler.metainfo.xml
 /usr/share/metainfo/org.kde.okular-spectre.metainfo.xml
@@ -506,7 +500,6 @@ popd
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_ghostview.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_kimgio.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_mobi.so
-/usr/lib64/qt5/plugins/okular/generators/okularGenerator_ooo.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_plucker.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_poppler.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_tiff.so
@@ -537,6 +530,6 @@ popd
 /usr/share/man/sv/man1/okular.1
 /usr/share/man/uk/man1/okular.1
 
-%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_ooo.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_markdown.lang -f okular_tiff.lang
+%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_markdown.lang -f okular_tiff.lang
 %defattr(-,root,root,-)
 
