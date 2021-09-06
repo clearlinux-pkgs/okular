@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : okular
-Version  : 21.04.2
-Release  : 36
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/okular-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/okular-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/okular-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 37
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/okular-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/okular-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/okular-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0
+License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 MIT X11
 Requires: okular-bin = %{version}-%{release}
 Requires: okular-data = %{version}-%{release}
 Requires: okular-lib = %{version}-%{release}
@@ -122,37 +122,46 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-21.04.2
-cd %{_builddir}/okular-21.04.2
+%setup -q -n okular-21.08.1
+cd %{_builddir}/okular-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623407650
+export SOURCE_DATE_EPOCH=1630958987
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623407650
+export SOURCE_DATE_EPOCH=1630958987
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
-cp %{_builddir}/okular-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/okular-21.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
-cp %{_builddir}/okular-21.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/okular-21.04.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/okular-21.08.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
+cp %{_builddir}/okular-21.08.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okular/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe
+cp %{_builddir}/okular-21.08.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/okular/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+cp %{_builddir}/okular-21.08.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/okular-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/okular-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+cp %{_builddir}/okular-21.08.1/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+cp %{_builddir}/okular-21.08.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/okular-21.08.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/okular-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okular-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okular-21.08.1/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/okular/adadb67a9875aeeac285309f1eab6e47d9ee08a7
+cp %{_builddir}/okular-21.08.1/LICENSES/X11.txt %{buildroot}/usr/share/package-licenses/okular/f6cdf05df7acdde7587a632d418465e3547fe498
 pushd clr-build
 %make_install
 popd
@@ -166,14 +175,14 @@ popd
 %find_lang okular_fictionbook
 %find_lang okular_ghostview
 %find_lang okular_kimgio
+%find_lang okular_markdown
 %find_lang okular_mobi
 %find_lang okular_plucker
 %find_lang okular_poppler
 %find_lang okular_txt
 %find_lang okular_xps
-%find_lang okular_markdown
-%find_lang okular_tiff
 %find_lang org.kde.active.documentviewer
+%find_lang okular_tiff
 
 %files
 %defattr(-,root,root,-)
@@ -510,10 +519,15 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/okular/0c4be15f5177aafffe980ca09c0f4ca6ed741f43
-/usr/share/package-licenses/okular/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-/usr/share/package-licenses/okular/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-/usr/share/package-licenses/okular/ff3ed70db4739b3c6747c7f624fe2bad70802987
+/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
+/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137
+/usr/share/package-licenses/okular/adadb67a9875aeeac285309f1eab6e47d9ee08a7
+/usr/share/package-licenses/okular/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+/usr/share/package-licenses/okular/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe
+/usr/share/package-licenses/okular/f6cdf05df7acdde7587a632d418465e3547fe498
 
 %files man
 %defattr(0644,root,root,0755)
@@ -531,6 +545,6 @@ popd
 /usr/share/man/sv/man1/okular.1
 /usr/share/man/uk/man1/okular.1
 
-%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_mobi.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f okular_markdown.lang -f okular_tiff.lang -f org.kde.active.documentviewer.lang
+%files locales -f okular.lang -f okular_chm.lang -f okular_comicbook.lang -f okular_djvu.lang -f okular_dvi.lang -f okular_epub.lang -f okular_fax.lang -f okular_fictionbook.lang -f okular_ghostview.lang -f okular_kimgio.lang -f okular_markdown.lang -f okular_mobi.lang -f okular_plucker.lang -f okular_poppler.lang -f okular_txt.lang -f okular_xps.lang -f org.kde.active.documentviewer.lang -f okular_tiff.lang
 %defattr(-,root,root,-)
 
