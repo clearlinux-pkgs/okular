@@ -14,6 +14,7 @@ libKF5JSApi.so.5
 libKF5JobWidgets.so.5
 libKF5KExiv2.so.15.0.0
 libKF5KIOCore.so.5
+libKF5KIOGui.so.5
 libKF5KIOWidgets.so.5
 libKF5Parts.so.5
 libKF5Pty.so.5
