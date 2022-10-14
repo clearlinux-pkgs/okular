@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : okular
-Version  : 22.08.1
-Release  : 50
-URL      : https://download.kde.org/stable/release-service/22.08.1/src/okular-22.08.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.1/src/okular-22.08.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.1/src/okular-22.08.1.tar.xz.sig
+Version  : 22.08.2
+Release  : 51
+URL      : https://download.kde.org/stable/release-service/22.08.2/src/okular-22.08.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.08.2/src/okular-22.08.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.08.2/src/okular-22.08.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 MIT X11
@@ -126,15 +126,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-22.08.1
-cd %{_builddir}/okular-22.08.1
+%setup -q -n okular-22.08.2
+cd %{_builddir}/okular-22.08.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662787588
+export SOURCE_DATE_EPOCH=1665761896
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -150,22 +150,22 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662787588
+export SOURCE_DATE_EPOCH=1665761896
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
-cp %{_builddir}/okular-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
-cp %{_builddir}/okular-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okular/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe
-cp %{_builddir}/okular-%{version}/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/okular/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
-cp %{_builddir}/okular-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/okular-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/okular-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51
-cp %{_builddir}/okular-%{version}/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51
-cp %{_builddir}/okular-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137
-cp %{_builddir}/okular-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137
-cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/okular-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/okular/adadb67a9875aeeac285309f1eab6e47d9ee08a7
-cp %{_builddir}/okular-%{version}/LICENSES/X11.txt %{buildroot}/usr/share/package-licenses/okular/f6cdf05df7acdde7587a632d418465e3547fe498
+cp %{_builddir}/okular-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
+cp %{_builddir}/okular-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okular/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe || :
+cp %{_builddir}/okular-%{version}/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/okular/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc || :
+cp %{_builddir}/okular-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46 || :
+cp %{_builddir}/okular-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/3e8971c6c5f16674958913a94a36b1ea7a00ac46 || :
+cp %{_builddir}/okular-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51 || :
+cp %{_builddir}/okular-%{version}/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/2123756e0b1fc8243547235a33c0fcabfe3b9a51 || :
+cp %{_builddir}/okular-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137 || :
+cp %{_builddir}/okular-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/okular/a4c60b3fefda228cd7439d3565df043192fef137 || :
+cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275 || :
+cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275 || :
+cp %{_builddir}/okular-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/okular/adadb67a9875aeeac285309f1eab6e47d9ee08a7 || :
+cp %{_builddir}/okular-%{version}/LICENSES/X11.txt %{buildroot}/usr/share/package-licenses/okular/f6cdf05df7acdde7587a632d418465e3547fe498 || :
 pushd clr-build
 %make_install
 popd
