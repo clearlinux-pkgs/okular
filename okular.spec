@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : okular
-Version  : 23.04.0
-Release  : 58
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/okular-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/okular-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/okular-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 59
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/okular-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/okular-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/okular-23.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 MIT X11
@@ -131,31 +131,48 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-23.04.0
-cd %{_builddir}/okular-23.04.0
+%setup -q -n okular-23.04.1
+cd %{_builddir}/okular-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682010731
+export SOURCE_DATE_EPOCH=1684774178
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake .. -DFORCE_NOT_REQUIRED_DEPENDENCIES="CHM;LibZip;DjVuLibre;EPub;Discount"
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake .. -DFORCE_NOT_REQUIRED_DEPENDENCIES="CHM;LibZip;DjVuLibre;EPub;Discount"
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682010731
+export SOURCE_DATE_EPOCH=1684774178
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp %{_builddir}/okular-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -171,6 +188,9 @@ cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{bui
 cp %{_builddir}/okular-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okular/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/okular-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/okular/adadb67a9875aeeac285309f1eab6e47d9ee08a7 || :
 cp %{_builddir}/okular-%{version}/LICENSES/X11.txt %{buildroot}/usr/share/package-licenses/okular/f6cdf05df7acdde7587a632d418465e3547fe498 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -192,12 +212,14 @@ popd
 %find_lang okular_txt
 %find_lang okular_xps
 %find_lang org.kde.active.documentviewer
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/okular
 /usr/bin/okular
 
 %files data
@@ -312,6 +334,7 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libOkular5Core.so
 /usr/include/okular/core/action.h
 /usr/include/okular/core/annotations.h
 /usr/include/okular/core/area.h
@@ -537,6 +560,21 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libOkular5Core.so.10
+/V3/usr/lib64/libOkular5Core.so.10.0.0
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_comicbook.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_dvi.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_fax.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_fb.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_ghostview.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_kimgio.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_mobi.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_plucker.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_poppler.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_tiff.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_txt.so
+/V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_xps.so
+/V3/usr/lib64/qt5/plugins/okularpart.so
 /usr/lib64/libOkular5Core.so.10
 /usr/lib64/libOkular5Core.so.10.0.0
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_comicbook.so
