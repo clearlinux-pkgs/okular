@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : okular
-Version  : 23.04.3
-Release  : 63
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/okular-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/okular-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/okular-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 64
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/okular-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/okular-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/okular-23.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 MIT X11
@@ -43,6 +43,7 @@ BuildRequires : poppler-dev
 BuildRequires : poppler-extras
 BuildRequires : purpose-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : qtdeclarative-dev
 BuildRequires : qtspeech-dev
 BuildRequires : qtx11extras-dev
 BuildRequires : threadweaver-dev
@@ -131,15 +132,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-23.04.3
-cd %{_builddir}/okular-23.04.3
+%setup -q -n okular-23.08.0
+cd %{_builddir}/okular-23.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688835772
+export SOURCE_DATE_EPOCH=1692996786
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -172,7 +173,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1688835772
+export SOURCE_DATE_EPOCH=1692996786
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp %{_builddir}/okular-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -559,7 +560,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libOkular5Core.so.10.0.0
+/V3/usr/lib64/libOkular5Core.so.11.0.0
 /V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_comicbook.so
 /V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_dvi.so
 /V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_fax.so
@@ -573,8 +574,8 @@ popd
 /V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_txt.so
 /V3/usr/lib64/qt5/plugins/okular/generators/okularGenerator_xps.so
 /V3/usr/lib64/qt5/plugins/okularpart.so
-/usr/lib64/libOkular5Core.so.10
-/usr/lib64/libOkular5Core.so.10.0.0
+/usr/lib64/libOkular5Core.so.11
+/usr/lib64/libOkular5Core.so.11.0.0
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_comicbook.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_dvi.so
 /usr/lib64/qt5/plugins/okular/generators/okularGenerator_fax.so
