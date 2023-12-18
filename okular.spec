@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : okular
-Version  : 23.08.3
-Release  : 68
-URL      : https://download.kde.org/stable/release-service/23.08.3/src/okular-23.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.08.3/src/okular-23.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.08.3/src/okular-23.08.3.tar.xz.sig
+Version  : 23.08.4
+Release  : 69
+URL      : https://download.kde.org/stable/release-service/23.08.4/src/okular-23.08.4.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.4/src/okular-23.08.4.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.4/src/okular-23.08.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 MIT X11
@@ -134,15 +134,15 @@ man components for the okular package.
 
 
 %prep
-%setup -q -n okular-23.08.3
-cd %{_builddir}/okular-23.08.3
+%setup -q -n okular-23.08.4
+cd %{_builddir}/okular-23.08.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702041768
+export SOURCE_DATE_EPOCH=1702926083
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -201,7 +201,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1702041768
+export SOURCE_DATE_EPOCH=1702926083
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okular
 cp %{_builddir}/okular-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/okular/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
