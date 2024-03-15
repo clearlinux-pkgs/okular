@@ -1,6 +1,8 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-kactivities-dev
 poppler-dev
 poppler-extras
 threadweaver-dev
+purpose-dev
+libkexiv2-dev
+phonon-dev
