@@ -9,7 +9,7 @@
 #
 Name     : okular
 Version  : 24.05.0
-Release  : 74
+Release  : 75
 URL      : https://download.kde.org/stable/release-service/24.05.0/src/okular-24.05.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.05.0/src/okular-24.05.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.05.0/src/okular-24.05.0.tar.xz.sig
